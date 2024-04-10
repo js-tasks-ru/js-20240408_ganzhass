@@ -3,7 +3,18 @@
  * @param {string[]} arr - the array of strings
  * @param {string} [param="asc"] param - the sorting type "asc" or "desc"
  * @returns {string[]}
+ *
+ * Examples:
+ * sortStrings(['b', 'a', 'c'], 'asc'); // ['a', 'b', 'c']
+ * sortStrings(['b', 'a', 'c'], 'desc'); // ['c', 'b', 'a']
  */
-export function sortStrings(arr, param = 'asc') {
 
+export function sortStrings(arr, param = "asc") {
+  const sortK = param === "asc" ? 1 : -1;
+  const newArr = arr.concat([]);
+
+  newArr.sort(
+    (a, b) => sortK * a.localeCompare(b, "ru-en", { caseFirst: "upper" })
+  );
+  return newArr;
 }
